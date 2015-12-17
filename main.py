@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-#from cal_cf2_measure import cf2_measure
 from cf2_measure import Cf2
 
 #print cf2_measure("48003.cf2")
@@ -11,9 +10,10 @@ for item in os.listdir(path):
     if item.endswith(".cf2"):
         path_cf2.append(item)
 for item in path_cf2:
-    cutter = Cf2(str(item))
-    print cutter.cutter[:-4],">",
-    print cutter.measures()
+    cutter = Cf2(str(item[:-4]))
+    print cutter
+    #print cutter.cutter[:-4],">",
+    #print cutter.measures()
 
 
     #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

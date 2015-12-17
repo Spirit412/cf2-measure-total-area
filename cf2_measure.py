@@ -56,6 +56,3 @@ class Cf2(object):
         return self.height
     def _cutter(self):
         return self.cutter[:-4]
-
-#cutter = Cf2("0667")
-#print cutter.measures()
