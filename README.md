@@ -6,5 +6,5 @@ A cf2 file is a CAD file based on coordinates, if opened with notepad we can see
 * sorted cutter list
 * user can manually insert directory (--dir)
 * can search for only one cutter (-c)
-* settings file to put default firectory
+* settings file to put default directory
 * possibility to export to a csv file 
