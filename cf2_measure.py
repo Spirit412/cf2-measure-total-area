@@ -1,19 +1,25 @@
 # -*- coding: utf-8 -*-
 from re import split
+import options
 
 class Cf2(object):
     ext = ".cf2"
     def __init__(self, cutter):
         self.cutter = cutter
-    def __repr__(self):
-        #return ("{:s}.cf2 > {:s}\nCutter: {:s}\nMeasures: {:s}\nWidth: {:d}\nHeight: {:d}".format(self.cutter, self.measures(), self.cutter, self.measures(), self.width, self.height))
-        #return "".join((cutter,".cf2 > ",measures,"\nCutter: ",cutter,"\nMeasures: ",measures,"\nWidth: ",str(width),"\nHeight: ",str(height)))
-        return ("{:s}.cf2 > {:s}".format(self.cutter, self.measures()))
-    def measures(self):
+
         while str(self.cutter).endswith(".cf2"):
+            #pass
             self.cutter = self.cutter[:-4]
         else:
-            dir = '\\\\nasd67f4b\\Cortantes\\' + str(self.cutter) + self.ext
+            path = options.opt_dir()
+            if not (path.endswith('/') or path.endswith('\\')):
+                path = path + '/'
+            dir_list = []
+            dir_list.append(path)
+            dir_list.append(self.cutter)
+            dir_list.append(self.ext)
+            dir = ''.join(dir_list)
+            #dir = path + str(self.cutter) + self.ext
             f = open(dir, 'r')
             file_contents = f.read()
             f.close()
@@ -48,11 +54,21 @@ class Cf2(object):
                     self.height = UR2 - LL2
             if self.width == 0 or self.height == 0:
                 return "ERROR, 0"
-            else:
-                return str(self.width) + 'x' + str(self.height)
+    def __repr__(self):
+        #return ("{:s}.cf2 > {:s}\nCutter: {:s}\nMeasures: {:s}\nWidth: {:d}\nHeight: {:d}".format(self.cutter, self.measures(), self.cutter, self.measures(), self.width, self.height))
+        #return "".join((cutter,".cf2 > ",measures,"\nCutter: ",cutter,"\nMeasures: ",measures,"\nWidth: ",str(width),"\nHeight: ",str(height)))
+        return ("{:s}.cf2 > {:s}".format(self.cutter, self.measures()))
+    def measures(self):
+        return str(self.width) + 'x' + str(self.height)
     def _width(self):
         return self.width
     def _height(self):
         return self.height
     def _cutter(self):
-        return self.cutter[:-4]
+        if str(self.cutter).endswith(".cf2"):
+            return self.cutter[:-4]
+        else:
+            return self.cutter
+
+cutter = Cf2("25637 seleção")
+print cutter
