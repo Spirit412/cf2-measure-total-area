@@ -12,6 +12,7 @@ def opt_dir():
         return "ERROR DIR NOT MENTIONED"
     else:
         path = config.get('SETTINGS', 'dir', raw=True)
+        path = path.encode()
         return path
 
 
@@ -22,9 +23,6 @@ parser.add_argument('-c', required=False, metavar='CUTTER', dest='_argPath',
 
 def main():
     args = parser.parse_args()
-    print args
-    global dir
-    dir = opt_dir()
 
 if __name__ == '__main__':
     main()

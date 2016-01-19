@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from re import split
 import options
+import os
 
 class Cf2(object):
     ext = ".cf2"
@@ -14,12 +15,14 @@ class Cf2(object):
             path = options.opt_dir()
             if not (path.endswith('/') or path.endswith('\\')):
                 path = path + '/'
-            dir_list = []
-            dir_list.append(path)
-            dir_list.append(self.cutter)
-            dir_list.append(self.ext)
-            dir = ''.join(dir_list)
+            #dir_list = []
+            #dir_list.append(path)
+            #dir_list.append(self.cutter)
+            #dir_list.append(self.ext)
+            #dir = ''.join(dir_list)
+            #print type(path)
             #dir = path + str(self.cutter) + self.ext
+            dir = os.path.join(path, (self.cutter).decode('utf8') + (self.ext).decode('utf8'))
             f = open(dir, 'r')
             file_contents = f.read()
             f.close()
@@ -70,5 +73,5 @@ class Cf2(object):
         else:
             return self.cutter
 
-cutter = Cf2("25637 seleção")
-print cutter
+#cutter = Cf2("18986")
+#print cutter
